@@ -32,22 +32,31 @@ class Login extends Component {
     const {username, password} = this.state
     const {history} = this.props
     const userDetails = {username, password}
-    const url = 'https://apis.ccbp.in/login'
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(userDetails),
-    }
-    const response = await fetch(url, options)
-    const data = await response.json()
-    if (response.ok === true) {
-      const keyToken = 'jwt_token'
-      const jwtToken = data[keyToken]
-      console.log(jwtToken)
-      Cookies.set('jwt_token', jwtToken, {expires: 15})
-      this.setState({showErrorMessage: false, errorMessage: data.error_msg})
-      history.replace('/')
-    } else {
-      this.setState({showErrorMessage: true, errorMessage: data.error_msg})
+
+    try {
+      const response = await fetch('https://apis.ccbp.in/login', {
+        method: 'POST',
+        body: JSON.stringify(userDetails),
+      })
+
+      if (response.ok) {
+        const {
+          jwt_token: jwtToken,
+          error_msg: errorMessage,
+        } = await response.json()
+        Cookies.set('jwt_token', jwtToken, {expires: 15})
+        this.setState({showErrorMessage: false, errorMessage})
+        history.replace('/')
+      } else {
+        const {error_msg: errorMessage} = await response.json()
+        this.setState({showErrorMessage: true, errorMessage})
+      }
+    } catch (error) {
+      console.error('Error during login:', error)
+      this.setState({
+        showErrorMessage: true,
+        errorMessage: 'An error occurred during login.',
+      })
     }
   }
 

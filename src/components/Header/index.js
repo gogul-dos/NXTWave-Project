@@ -70,6 +70,7 @@ class Header extends Component {
                       onChange={this.inputChanged}
                       placeholder="Search Caption"
                     />
+
                     <Link to="/search">
                       <button
                         type="button"
@@ -99,35 +100,43 @@ class Header extends Component {
                       />
                     )}
                   </button>
-                  <Link
-                    to="/"
-                    style={{
-                      color: currentTab === 'Home' ? '#4094ef' : '',
-                      fontWeight: currentTab === 'Home' ? 'Bold' : '',
-                    }}
-                    className={`link-item ${backgroundColor}`}
-                    onClick={() => changeCurrentTab('Home')}
-                  >
-                    Home
-                  </Link>
-                  <Link
-                    to="/profile"
-                    style={{
-                      color: currentTab === 'Profile' ? '#4094ef' : '',
-                      fontWeight: currentTab === 'Profile' ? 'Bold' : '',
-                    }}
-                    className={`link-item ${backgroundColor}`}
-                    onClick={() => changeCurrentTab('Profile')}
-                  >
-                    Profile
-                  </Link>
-                  <button
-                    onClick={this.logoutButtonClicked}
-                    type="button"
-                    className="logout-button"
-                  >
-                    Logout
-                  </button>
+                  <ul className="navbar-unordered-list">
+                    <li>
+                      <Link
+                        to="/"
+                        style={{
+                          color: currentTab === 'Home' ? '#4094ef' : '',
+                          fontWeight: currentTab === 'Home' ? 'Bold' : '',
+                        }}
+                        className={`link-item ${backgroundColor}`}
+                        onClick={() => changeCurrentTab('Home')}
+                      >
+                        Home
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/profile"
+                        style={{
+                          color: currentTab === 'Profile' ? '#4094ef' : '',
+                          fontWeight: currentTab === 'Profile' ? 'Bold' : '',
+                        }}
+                        className={`link-item ${backgroundColor}`}
+                        onClick={() => changeCurrentTab('Profile')}
+                      >
+                        Profile
+                      </Link>
+                    </li>
+                    <li>
+                      <button
+                        onClick={this.logoutButtonClicked}
+                        type="button"
+                        className="logout-button"
+                      >
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
                 </div>
               </div>
               <div className="navbar-container-portrait">
@@ -157,82 +166,92 @@ class Header extends Component {
                 </button>
               </div>
               {isPortraitMenuOpen && (
-                <div className="portrait-links-container">
-                  <Link
-                    to="/search"
-                    onClick={() => {
-                      changeCurrentTab('Search')
-                      this.hamburgerButtonClicked()
-                    }}
-                    style={{
-                      color: currentTab === 'Search' ? '#4094ef' : '',
-                      fontWeight: currentTab === 'Search' ? 'Bold' : '',
-                    }}
-                    className={`link-item ${backgroundColor}`}
-                  >
-                    Search
-                  </Link>
-                  <Link
-                    to="/"
-                    onClick={() => {
-                      changeCurrentTab('Home')
-                      this.hamburgerButtonClicked()
-                    }}
-                    style={{
-                      color: currentTab === 'Home' ? '#4094ef' : '',
-                      fontWeight: currentTab === 'Home' ? 'Bold' : '',
-                    }}
-                    className={`link-item ${backgroundColor}`}
-                  >
-                    Home
-                  </Link>
-                  <Link
-                    to="/profile"
-                    onClick={() => {
-                      changeCurrentTab('Profile')
-                      this.hamburgerButtonClicked()
-                    }}
-                    style={{
-                      color: currentTab === 'Profile' ? '#4094ef' : '',
-                      fontWeight: currentTab === 'Profile' ? 'Bold' : '',
-                    }}
-                    className={`link-item ${backgroundColor}`}
-                  >
-                    Profile
-                  </Link>
-                  <button
-                    onClick={() => {
-                      this.logoutButtonClicked()
-                      this.hamburgerButtonClicked()
-                    }}
-                    type="button"
-                    className="logout-button"
-                  >
-                    Logout
-                  </button>
-                  <button
-                    onClick={() => {
-                      themeButtonClicked()
-                      this.hamburgerButtonClicked()
-                    }}
-                    label="themeButton"
-                    type="button"
-                    className="theme-change-button"
-                  >
-                    {activeTheme === 'Light' && (
-                      <FaMoon style={{height: '22px', width: 'auto'}} />
-                    )}
-                    {activeTheme === 'Dark' && (
-                      <FaSun
-                        style={{
-                          height: '22px',
-                          width: 'auto',
-                          color: 'White',
-                        }}
-                      />
-                    )}
-                  </button>
-                </div>
+                <ul className="portrait-links-container">
+                  <li>
+                    <Link
+                      to="/search"
+                      onClick={() => {
+                        changeCurrentTab('Search')
+                        this.hamburgerButtonClicked()
+                      }}
+                      style={{
+                        color: currentTab === 'Search' ? '#4094ef' : '',
+                        fontWeight: currentTab === 'Search' ? 'Bold' : '',
+                      }}
+                      className={`link-item ${backgroundColor}`}
+                    >
+                      Search
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/"
+                      onClick={() => {
+                        changeCurrentTab('Home')
+                        this.hamburgerButtonClicked()
+                      }}
+                      style={{
+                        color: currentTab === 'Home' ? '#4094ef' : '',
+                        fontWeight: currentTab === 'Home' ? 'Bold' : '',
+                      }}
+                      className={`link-item ${backgroundColor}`}
+                    >
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/profile"
+                      onClick={() => {
+                        changeCurrentTab('Profile')
+                        this.hamburgerButtonClicked()
+                      }}
+                      style={{
+                        color: currentTab === 'Profile' ? '#4094ef' : '',
+                        fontWeight: currentTab === 'Profile' ? 'Bold' : '',
+                      }}
+                      className={`link-item ${backgroundColor}`}
+                    >
+                      Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => {
+                        this.logoutButtonClicked()
+                        this.hamburgerButtonClicked()
+                      }}
+                      type="button"
+                      className="logout-button"
+                    >
+                      Logout
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => {
+                        themeButtonClicked()
+                        this.hamburgerButtonClicked()
+                      }}
+                      label="themeButton"
+                      type="button"
+                      className="theme-change-button"
+                    >
+                      {activeTheme === 'Light' && (
+                        <FaMoon style={{height: '22px', width: 'auto'}} />
+                      )}
+                      {activeTheme === 'Dark' && (
+                        <FaSun
+                          style={{
+                            height: '22px',
+                            width: 'auto',
+                            color: 'White',
+                          }}
+                        />
+                      )}
+                    </button>
+                  </li>
+                </ul>
               )}
               <hr />
             </nav>

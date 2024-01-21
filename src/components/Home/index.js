@@ -93,11 +93,11 @@ class Home extends Component {
     const {storyRequestStatus, storyResult} = this.state
     const settings = {
       slidesToShow: 6,
-      slidesToScroll: 1,
+      slidesToScroll: 3,
     }
     const settings1 = {
       slidesToShow: 4,
-      slidesToScroll: 1,
+      slidesToScroll: 3,
     }
     const fontColor = activeTheme === 'Dark' ? 'dark-color' : 'light-color'
     switch (storyRequestStatus) {
@@ -222,6 +222,10 @@ class Home extends Component {
     }
   }
 
+  tryAgainPost = () => {
+    this.getPostResults()
+  }
+
   getCorrespondingView = (activeTheme, changeCurrentTab) => {
     const {urlRequestStatus, urlResult} = this.state
     const fontColor = activeTheme === 'Dark' ? 'dark-color' : 'light-color'
@@ -241,11 +245,15 @@ class Home extends Component {
           <div className="home-failure-container">
             <img
               src="https://res.cloudinary.com/djfbwkdh3/image/upload/v1705664465/alert-triangle_e49eqv.png"
-              alt="failure"
+              alt="failure view"
               className="failure-image"
             />
             <h1>Something went wrong. Please try again</h1>
-            <button type="button" className="try-again-button">
+            <button
+              type="button"
+              onClick={this.tryAgainPost()}
+              className="try-again-button"
+            >
               Try Again
             </button>
           </div>
@@ -282,8 +290,8 @@ class Home extends Component {
                   {!eachPost.like_status && (
                     <button
                       type="button"
-                      label="unLikeIcon"
-                      data-testid="unLikeIcon"
+                      label="likeIcon"
+                      data-testid="likeIcon"
                       className="like-button"
                     >
                       <BsHeart
@@ -300,8 +308,8 @@ class Home extends Component {
                   {eachPost.like_status && (
                     <button
                       type="button"
-                      label="likeIcon"
-                      data-testid="likeIcon"
+                      label="unLikeIconv"
+                      data-testid="unLikeIcon"
                       className="like-button"
                     >
                       <FcLike
