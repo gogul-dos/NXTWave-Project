@@ -8,7 +8,6 @@ import {FaRegComment, FaSearch} from 'react-icons/fa'
 import {GrSearchAdvanced} from 'react-icons/gr'
 import {BiShareAlt} from 'react-icons/bi'
 import ThemeContext from '../Context'
-import Header from '../Header'
 import './index.css'
 
 class Search extends Component {
@@ -188,7 +187,7 @@ class Search extends Component {
                         className={`username-link ${fontColor}`}
                         onClick={() => changeCurrentTab('userProfile')}
                       >
-                        {eachPost.userName}
+                        <p>{eachPost.userName} </p>
                       </Link>
                     </div>
                     <img
@@ -200,8 +199,8 @@ class Search extends Component {
                       {!eachPost.like_status && (
                         <button
                           type="button"
-                          label="unLikeIcon"
-                          data-testid="unLikeIcon"
+                          label="likeIcon"
+                          data-testid="likeIcon"
                           className="like-button"
                         >
                           <BsHeart
@@ -237,9 +236,9 @@ class Search extends Component {
                           key={eachComment.user_id}
                           className="comment-list-item"
                         >
-                          <p style={{fontWeight: 'bold'}}>
+                          <span style={{fontWeight: 'bold'}}>
                             {eachComment.user_name}
-                          </p>
+                          </span>
                           <p style={{marginLeft: '5px'}}>
                             {eachComment.comment}
                           </p>
@@ -294,12 +293,10 @@ class Search extends Component {
           return (
             <>
               <div className="search-container-landscape">
-                <Header />
                 <h1 style={{marginLeft: '15px'}}>Search Results</h1>
                 {this.getCorrespondingLandscapeView(activeTheme)}
               </div>
               <div className="search-container-portrait">
-                <Header />
                 <div
                   style={{
                     display: 'flex',
@@ -314,20 +311,20 @@ class Search extends Component {
                       placeholder="Search Caption"
                       id="portraitSearch"
                     />
-                    <Link to="/search">
-                      <button
-                        type="button"
-                        label="search"
-                        className="search-icon-container"
-                        onClick={() => {
-                          changeCurrentTab('Search')
-                          changeSearchInput(portraitSearchInput)
-                          this.inputChangedPortrait()
-                        }}
-                      >
-                        <FaSearch style={{height: '15px', width: '15px'}} />
-                      </button>
-                    </Link>
+
+                    <button
+                      type="button"
+                      label="search"
+                      data-testid="searchIcon"
+                      className="search-icon-container"
+                      onClick={() => {
+                        changeCurrentTab('Search')
+                        changeSearchInput(portraitSearchInput)
+                        this.inputChangedPortrait()
+                      }}
+                    >
+                      <FaSearch style={{height: '15px', width: '15px'}} />
+                    </button>
                   </div>
                 </div>
                 {portraitSearchInput === '' && searchButtonClicked === 0 ? (

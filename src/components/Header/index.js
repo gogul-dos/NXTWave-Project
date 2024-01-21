@@ -71,19 +71,18 @@ class Header extends Component {
                       placeholder="Search Caption"
                     />
 
-                    <Link to="/search">
-                      <button
-                        type="button"
-                        label="search"
-                        className="search-icon-container"
-                        onClick={() => {
-                          changeCurrentTab('Search')
-                          changeSearchInput(searchInput)
-                        }}
-                      >
-                        <FaSearch style={{height: '15px', width: '15px'}} />
-                      </button>
-                    </Link>
+                    <button
+                      type="button"
+                      label="search"
+                      data-testid="searchIcon"
+                      className="search-icon-container"
+                      onClick={() => {
+                        changeCurrentTab('Search')
+                        changeSearchInput(searchInput)
+                      }}
+                    >
+                      <FaSearch style={{height: '15px', width: '15px'}} />
+                    </button>
                   </div>
                   <button
                     onClick={themeButtonClicked}
@@ -168,8 +167,9 @@ class Header extends Component {
               {isPortraitMenuOpen && (
                 <ul className="portrait-links-container">
                   <li>
-                    <Link
+                    <button
                       to="/search"
+                      type="button"
                       onClick={() => {
                         changeCurrentTab('Search')
                         this.hamburgerButtonClicked()
@@ -178,10 +178,10 @@ class Header extends Component {
                         color: currentTab === 'Search' ? '#4094ef' : '',
                         fontWeight: currentTab === 'Search' ? 'Bold' : '',
                       }}
-                      className={`link-item ${backgroundColor}`}
+                      className={`search-button ${backgroundColor}`}
                     >
                       Search
-                    </Link>
+                    </button>
                   </li>
                   <li>
                     <Link

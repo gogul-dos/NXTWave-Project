@@ -2,12 +2,14 @@ import {Component} from 'react'
 import {Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 import Loader from 'react-loader-spinner'
 import {BsHeart} from 'react-icons/bs'
 import {FcLike} from 'react-icons/fc'
 import {FaRegComment} from 'react-icons/fa'
 import {BiShareAlt} from 'react-icons/bi'
-
+import Search from '../Search'
 import ThemeContext from '../Context'
 import Header from '../Header'
 import './index.css'
@@ -251,7 +253,7 @@ class Home extends Component {
             <h1>Something went wrong. Please try again</h1>
             <button
               type="button"
-              onClick={this.tryAgainPost()}
+              onClick={this.tryAgainPost}
               className="try-again-button"
             >
               Try Again
@@ -355,7 +357,7 @@ class Home extends Component {
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {activeTheme, changeCurrentTab} = value
+          const {activeTheme, changeCurrentTab, searchInput, currentTab} = value
           const backgroundTheme =
             activeTheme === 'Dark'
               ? 'home-dark-container'
@@ -363,9 +365,17 @@ class Home extends Component {
           return (
             <div>
               <Header />
-              <div className={`main-home-container ${backgroundTheme}`}>
-                {this.getStoryView(activeTheme)}
-                {this.getCorrespondingView(activeTheme, changeCurrentTab)}
+              <div>
+                <div>
+                  {searchInput === '' && currentTab === 'Home' ? (
+                    <div className={`main-home-container ${backgroundTheme}`}>
+                      {this.getStoryView(activeTheme)}
+                      {this.getCorrespondingView(activeTheme, changeCurrentTab)}
+                    </div>
+                  ) : (
+                    <Search />
+                  )}
+                </div>
               </div>
             </div>
           )

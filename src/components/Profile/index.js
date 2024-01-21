@@ -38,7 +38,6 @@ class Profile extends Component {
         urlResult: data.profile,
         urlRequestStatus: this.requestStatus.success,
       })
-      console.log(data.profile)
     } else {
       this.setState({urlRequestStatus: this.requestStatus.failure})
     }
@@ -137,21 +136,19 @@ class Profile extends Component {
                   />
                   <p style={{marginLeft: '15px'}}>
                     <span style={{fontWeight: 'bold'}}>
-                      {' '}
-                      {urlResult.posts_count}{' '}
+                      {urlResult.posts_count}
                     </span>
                     posts
                   </p>
                   <p style={{marginLeft: '15px'}}>
                     <span style={{fontWeight: 'bold'}}>
-                      {' '}
-                      {urlResult.followers_count}{' '}
+                      {urlResult.followers_count}
                     </span>
                     followers
                   </p>
                   <p style={{marginLeft: '15px'}}>
                     <span style={{fontWeight: 'bold'}}>
-                      {urlResult.following_count}{' '}
+                      {urlResult.following_count}
                     </span>
                     following
                   </p>
